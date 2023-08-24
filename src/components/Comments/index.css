@@ -1,0 +1,135 @@
+/* Write your CSS here */
+.bg-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  padding: 6%;
+}
+
+.heading {
+  color: #1e293b;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.input {
+  margin-bottom: 10px;
+}
+
+.text-area {
+  margin-bottom: 10px;
+}
+
+.form-heading {
+  font-size: 18px;
+}
+
+.button {
+  background-color: #0284c7;
+  height: 30px;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.comments-count {
+  font-size: 16px;
+  color: #475569;
+}
+@media screen and (min-width: 768px) {
+  .bg-container {
+    padding: 10%;
+  }
+  .content-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-container {
+    order: 2;
+    width: 46%;
+  }
+
+  .form-container {
+    order: 1;
+  }
+  .input {
+    width: 70%;
+    height: 38px;
+  }
+  .text-area {
+    width: 70%;
+    height: 140px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 767px) {
+  .heading {
+    text-align: center;
+  }
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .input {
+    width: 60%;
+    height: 34px;
+  }
+
+  .text-area {
+    width: 60%;
+    height: 120px;
+  }
+
+  .image {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .heading {
+    text-align: center;
+  }
+
+  .input {
+    width: 80%;
+    height: 40px;
+  }
+
+  .text-area {
+    width: 80%;
+    height: 120px;
+  }
+
+  .image {
+    width: 90%;
+  }
+}
