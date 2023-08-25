@@ -8,8 +8,18 @@ import {v4 as uudiv4} from 'uuid'
 
 import CommentItem from '../CommentItem'
 
+const initialContainerBackgroundClassNames = [
+  'amber',
+  'blue',
+  'orange',
+  'emerald',
+  'teal',
+  'red',
+  'light-blue',
+]
+
 class Comments extends Component {
-  state: {
+  state = {
     commentsList: [],
     nameInput: '',
     commentInput: '',
@@ -18,31 +28,25 @@ class Comments extends Component {
   submitButton = event => {
     event.preventDefault()
     const {nameInput, commentInput} = this.state
+    const initialBackgroundClassName =
+      initialContainerBackgroundClassNames[
+        Math.ceil(
+          Math.random() * initialContainerBackgroundClassNames.length - 1,
+        )
+      ]
     const newComment = {
       id: uudiv4,
       name: nameInput,
       date: new Date(),
       comment: commentInput,
       isLiked: false,
+      initialClassname: initialBackgroundClassName,
     }
     this.setState(prevState => ({
       commentsList: [...prevState.commentsList, newComment],
       nameInput: '',
       commentInput: '',
     }))
-  }
-
-  getComment = () => {
-    const {commentsList} = this.state
-
-    return commentsList.map(eachComment => (
-      <CommentItem
-        comment={eachComment}
-        key={eachComment.id}
-        toggleIsLiked={this.toggleIsLiked}
-        deleteComment={this.deleteComment}
-      />
-    ))
   }
 
   toggleIsLiked = id => {
@@ -64,6 +68,18 @@ class Comments extends Component {
     }))
   }
 
+  getComment = () => {
+    const {commentsList} = this.state
+    return commentsList.map(eachComment => (
+      <CommentItem
+        eachComment={eachComment}
+        key={eachComment.id}
+        toggleIsLiked={this.toggleIsLiked}
+        deleteComment={this.deleteComment}
+      />
+    ))
+  }
+
   setName = event => {
     this.setState({nameInput: event.target.value})
   }
@@ -73,7 +89,7 @@ class Comments extends Component {
   }
 
   render() {
-    const {nameInput, commentInput} = this.state
+    const {nameInput, commentInput, commentsList} = this.state
     return (
       <div className="bg-container">
         <h1 className="heading">Comments</h1>
@@ -87,12 +103,12 @@ class Comments extends Component {
           </div>
           <form className="form" onSubmit={this.submitButton}>
             <div className="form-container">
-              <h1 className="form-heading">
+              <p className="form-heading">
                 Say something about 4.0 technologies
-              </h1>
+              </p>
               <input
                 className="input"
-                placeholder="Enter Name"
+                placeholder="Your Name"
                 onChange={this.setName}
                 value={nameInput}
               />
@@ -112,7 +128,9 @@ class Comments extends Component {
           </form>
           <hr />
         </div>
-        <h1 className="comments-count">Comments</h1>
+        <h1 className="comments-count">
+          <span className="comment-count">{commentsList.length}</span>Comments
+        </h1>
         <ul className="unordered-list">{this.getComment()}</ul>
       </div>
     )
